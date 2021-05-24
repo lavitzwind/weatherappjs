@@ -19,8 +19,8 @@ const getGeoWeather = (event) => {
         if (event.type === "click") {
             const mapIcon = document.querySelector(".fa-map-marker-alt");
             addSpinner(mapIcon);
-        };
-    };
+        }
+    }
     if (!navigator.geolocation) geoError();
     navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
 };
@@ -35,7 +35,7 @@ const geoSuccess = (position) => {
         lat: position.coords.latitude,
         lon: position.coords.longitude,
         name : `Lat:${position.coords.latitude} Lon:${position.coords.longitude}`
-    };
+    }
     setLocationObject(currentLoc, myCoordsObj);
     console.log(currentLoc);
 };
