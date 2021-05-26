@@ -1,3 +1,3 @@
 # weatherappjs
-App with Vanilla Javascript, HTML, and SCSS 
+App with Vanilla Javascript, HTML, and SCSS.
 
