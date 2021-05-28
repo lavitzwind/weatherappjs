@@ -2,7 +2,7 @@ import {
 	setLocationObject,
 	getHomeLocation,
 	getCoordsFromApi,
-	cleanText,
+	cleanText
 } from "./dataFunctions.js";
 import {
 	setPlaceholderText,
