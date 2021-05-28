@@ -1,4 +1,4 @@
-const WEATHER_API_KEY = "a9c808c67afa3ab6d35fb1e1b37a0086";
+const WEATHER_API_KEY = "f9318322426df082e47fd9efc0f91e26";
 
 export const setLocationObject = (locationObj, coordsObj) => {
 	const { lat, lon, name, unit } = coordsObj;
@@ -19,6 +19,13 @@ export const getWeatherFromCoords = async (locationObj) => {
 	const lon = locationObj.getLon();
 	const units = locationObj.getUnit();
 	const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&units=${units}&appid=${WEATHER_API_KEY}`;
+	try {
+		const weatherStream = await fetch(url);
+		const weatherJson = await weatherStream.json();
+		return weatherJson;
+	} catch (err) {
+		console.error(err);
+	}
 };
 
 export const getCoordsFromApi = async (entryText, units) => {
