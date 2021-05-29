@@ -11,6 +11,7 @@ import {
 	displayError,
 	displayApiError,
 	updateScreenReaderConfirmation,
+	updateDisplay,
 } from "./domFunctions.js";
 import CurrentLocation from "./CurrentLocation.js";
 const currentLoc = new CurrentLocation();
@@ -57,7 +58,7 @@ const geoSuccess = (position) => {
 	const myCoordsObj = {
 		lat: position.coords.latitude,
 		lon: position.coords.longitude,
-		name: `Lat:${position.coords.latitude} Lon:${position.coords.longitude}`,
+		name: `Lat:${position.coords.latitude} Long:${position.coords.longitude}`,
 	};
 	setLocationObject(currentLoc, myCoordsObj);
 	updateDataAndDisplay(currentLoc);
