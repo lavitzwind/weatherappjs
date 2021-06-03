@@ -150,6 +150,7 @@ const setFocusOnSearch = () => {
 };
 
 const createCurrentConditionsDivs = (weatherObj, unit) => {
+	console.log(weatherObj);
 	const tempUnit = unit === "imperial" ? "F" : "C";
 	const windUnit = unit === "imperial" ? "mph" : "m/s";
 	const icon = createMainImgDiv(
@@ -162,7 +163,6 @@ const createCurrentConditionsDivs = (weatherObj, unit) => {
 		`${Math.round(Number(weatherObj.current.temp))}°`,
 		tempUnit
 	);
-	console.log(temp);
 	const properDesc = toProperCase(weatherObj.current.weather[0].description);
 	const desc = createElem("div", "desc", properDesc);
 	const feels = createElem(
