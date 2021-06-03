@@ -39,13 +39,11 @@ const initApp = () => {
 document.addEventListener("DOMContentLoaded", initApp);
 
 const getGeoWeather = (event) => {
-	if (event) {
-		if (event.type === "click") {
-			const mapIcon = document.querySelector(".fa-map-marker-alt");
-			addSpinner(mapIcon);
-		}
+	if (event && event.type === "click") {
+		const mapIcon = document.querySelector(".fa-map-marker-alt");
+		addSpinner(mapIcon);
 	}
-	if (!navigator.geolocation) geoError();
+	if (!navigator.geolocation) return geoError();
 	navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
 };
 
@@ -70,7 +68,7 @@ const loadWeather = (event) => {
 	if (!savedLocation && event.type === "click") {
 		displayError(
 			"No Home Location Saved.",
-			"Sorry, Please save your home location first."
+			"Sorry. Please save your home location first."
 		);
 	} else if (savedLocation && !event) {
 		displayHomeLocationWeather(savedLocation);

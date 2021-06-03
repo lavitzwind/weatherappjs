@@ -24,7 +24,7 @@ export const displayError = (headerMsg, srMsg) => {
 export const displayApiError = (statusCode) => {
 	const properMsg = toProperCase(statusCode.message);
 	updateWeatherLocationHeader(properMsg);
-	updateScreenReaderConfirmation(`${properMsg}, Please try again.`);
+	updateScreenReaderConfirmation(`${properMsg}. Please try again.`);
 };
 
 const toProperCase = (text) => {
@@ -139,7 +139,7 @@ const setBGImage = (weatherClass) => {
 const buildScreenReaderWeather = (weatherJson, locationObj) => {
 	const location = locationObj.getName();
 	const unit = locationObj.getUnit();
-	const tempUnit = unit === "imperial" ? "F" : "C";
+	const tempUnit = unit === "imperial" ? "Fahrenheit" : "Celsius";
 	return `${weatherJson.current.weather[0].description} and ${Math.round(
 		Number(weatherJson.current.temp)
 	)}°${tempUnit} in ${location}`;
@@ -159,19 +159,21 @@ const createCurrentConditionsDivs = (weatherObj, unit) => {
 	const temp = createElem(
 		"div",
 		"temp",
-		`${Math.round(Number(weatherObj.current.temp))}°`
+		`${Math.round(Number(weatherObj.current.temp))}°`,
+		tempUnit
 	);
+	console.log(temp);
 	const properDesc = toProperCase(weatherObj.current.weather[0].description);
 	const desc = createElem("div", "desc", properDesc);
 	const feels = createElem(
 		"div",
 		"feels",
-		`feels Like ${Math.round(Number(weatherObj.current.feels_like))}*`
+		`Feels Like ${Math.round(Number(weatherObj.current.feels_like))}°`
 	);
 	const maxTemp = createElem(
 		"div",
 		"maxtemp",
-		`high ${Math.round(Number(weatherObj.daily[0].temp.max))}°`
+		`High ${Math.round(Number(weatherObj.daily[0].temp.max))}°`
 	);
 	const minTemp = createElem(
 		"div",
@@ -196,7 +198,7 @@ const createMainImgDiv = (icon, altText) => {
 	iconDiv.id = "icon";
 	const faIcon = translateIconToFontAwesome(icon);
 	faIcon.ariaHidden = true;
-	faIcon.tittle = altText;
+	faIcon.title = altText;
 	iconDiv.appendChild(faIcon);
 	return iconDiv;
 };
@@ -209,7 +211,7 @@ const createElem = (elemType, divClassName, divText, unit) => {
 	}
 	if (divClassName === "temp") {
 		const unitDiv = document.createElement("div");
-		unitDiv.classList.add("unit");
+		unitDiv.className = "unit";
 		unitDiv.textContent = unit;
 		div.appendChild(unitDiv);
 	}
