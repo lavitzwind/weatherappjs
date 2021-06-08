@@ -69,7 +69,7 @@ export const updateDisplay = (weatherJson, locationObj) => {
 		weatherJson,
 		locationObj
 	);
-	updateScreenReaderConfirmation(screenReaderWeather);
+	screenReaderWeather;
 	updateWeatherLocationHeader(locationObj.getName());
 	// current conditions
 	const ccArray = createCurrentConditionsDivs(
@@ -150,7 +150,6 @@ const setFocusOnSearch = () => {
 };
 
 const createCurrentConditionsDivs = (weatherObj, unit) => {
-	console.log(weatherObj);
 	const tempUnit = unit === "imperial" ? "F" : "C";
 	const windUnit = unit === "imperial" ? "mph" : "m/s";
 	const icon = createMainImgDiv(
@@ -272,6 +271,7 @@ const displayCurrentConditions = (currentConditionsArray) => {
 	const ccContainer = document.getElementById("currentForecast__conditions");
 	currentConditionsArray.forEach((cc) => {
 		ccContainer.appendChild(cc);
+		console.log(cc);
 	});
 };
 
